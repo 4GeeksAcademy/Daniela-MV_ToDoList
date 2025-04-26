@@ -8,7 +8,12 @@ const Home = () => {
 
 	const [tareas, setTareas] = useState([""]);
 	const [nuevaTarea, setNuevaTarea] = useState("");
+	const [botonBorrar, setBotonBorrar] = useState (false)
+    
+	function botonAusente(){
 
+	}
+	
 	function entrada(evento){
        setNuevaTarea(evento.target.value);
 	}
@@ -45,9 +50,9 @@ const Home = () => {
 	 		onChange={entrada} 	
 	 		onKeyDown={inputEnter}/>	
 
-                <ul>
+                <ul className="bg-light-subtle" style={{width: "900px"}}>
 				{tareas.map((tarea, index)=> 
-				<li key={index}> 
+				<li className="ms-3" key={index}> 
 				<span className="text">{tarea}</span>
 				<button type="button" class="btn btn-light">
 				<i className="bi bi-clipboard-x"></i>
