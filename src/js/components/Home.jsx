@@ -6,28 +6,23 @@ import React, { useState } from "react";
 //create your first component
 const Home = () => {
 
-	const [tareas, setTareas] = useState([]);
+	const [tareas, setTareas] = useState([""]);
 	const [nuevaTarea, setNuevaTarea] = useState("");
 
 	function entrada(evento){
        setNuevaTarea(evento.target.value);
 	}
 
-	function entradaDeTarea(e){
+	function inputEnter(e){
 		if (e.key === "Enter" && nuevaTarea.trim() !== "") {
 			setTareas([...tareas, nuevaTarea]);
 			setNuevaTarea("");
 		}
-		console.log("funciona");
-		
 	}
 
 	function borrarTarea(index){
 
 	}
-
-
-
 
 	return (
 	
@@ -40,7 +35,14 @@ const Home = () => {
 				value={nuevaTarea}  
 				placeholder="Añade una tarea" 
 				onChange={entrada} 	
-				onKeyDown={entradaDeTarea}/>	
+				onKeyDown={inputEnter}/>	
+
+                <ul>
+				{tareas.map((tarea, index)=> 
+				<li key={index}> 
+				<span className="text">{tarea}</span>
+				</li>)}
+			    </ul>
 			</div>
 		</div>
 	);
