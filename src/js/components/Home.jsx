@@ -6,9 +6,9 @@ import React, { useState } from "react";
 //create your first component
 const Home = () => {
 
-	const [tareas, setTareas] = useState([""]);
+	const [tareas, setTareas] = useState([]);
 	const [nuevaTarea, setNuevaTarea] = useState("");
-	const [borrarBoton, setBorrarBoton] = useState (false)
+	const [borrarBoton, setBorrarBoton] = useState (null);
     
 	
 	function entrada(evento){
@@ -22,25 +22,15 @@ const Home = () => {
 		}
 	}
 
-	function botonAusente(){
-		setBorrarBoton(prev => !prev);
-		}
-
 	function borrarTarea(index){
-     
+		const nuevasTareas = tareas.filter((_, i)=> i !== index);
+		setTareas(nuevasTareas);
 	}
 
 	return (
 
-// 		<div class="accordion accordion-flush" id="accordionFlushExample">
-//   <div class="accordion-item">
-//     <h2 class="accordion-header">
-//       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-//         Accordion Item #1
-//       </button>
-//     </h2>
 	
-	 <div className="d-flex justify-content-center" style={{backgroundColor: "#f0f0f0", minHeight: "100vh"}} >
+	 <div className="d-flex justify-content-center" id="fondo" style={{backgroundColor: "#f0f0f0", minHeight: "100vh"}} >
 	 	<div className="form text-center fs-1 mt-5" style={{width: "900px"}}>
 	 	<label type="text">Todos</label>
 	 		<input 
@@ -53,10 +43,11 @@ const Home = () => {
 
                 <ul className="bg-light-subtle" style={{width: "900px"}}>
 				{tareas.map((tarea, index)=> 
-				<li className="ms-3" key={index}> 
-				<span className="text">{tarea}</span>
-				{borrarBoton && (
-				<button type="button" class="btn btn-light" onclick={botonAusente}>
+				<li className="d-flex justify-content-between align-items-center px-3 py-2 border-bottom rounded-3" id="homework" key={index} onMouseEnter={()=>setBorrarBoton(index)} onMouseLeave={() =>setBorrarBoton(null)}> 
+				<span className="text">
+				<i className="bi bi-check-circle me-2 fs-4"></i>{tarea}</span>
+				{borrarBoton === index && (
+				<button type="button" class="btn btn-light" onClick={()=>borrarTarea(index)}>
 				<i className="bi bi-clipboard-x"></i> 
 				</button> )}
 				
