@@ -8,11 +8,8 @@ const Home = () => {
 
 	const [tareas, setTareas] = useState([""]);
 	const [nuevaTarea, setNuevaTarea] = useState("");
-	const [botonBorrar, setBotonBorrar] = useState (false)
+	const [borrarBoton, setBorrarBoton] = useState (false)
     
-	function botonAusente(){
-
-	}
 	
 	function entrada(evento){
        setNuevaTarea(evento.target.value);
@@ -25,8 +22,12 @@ const Home = () => {
 		}
 	}
 
-	function borrarTarea(index){
+	function botonAusente(){
+		setBorrarBoton(prev => !prev);
+		}
 
+	function borrarTarea(index){
+     
 	}
 
 	return (
@@ -54,9 +55,11 @@ const Home = () => {
 				{tareas.map((tarea, index)=> 
 				<li className="ms-3" key={index}> 
 				<span className="text">{tarea}</span>
-				<button type="button" class="btn btn-light">
-				<i className="bi bi-clipboard-x"></i>
-				</button>
+				{borrarBoton && (
+				<button type="button" class="btn btn-light" onclick={botonAusente}>
+				<i className="bi bi-clipboard-x"></i> 
+				</button> )}
+				
 				</li>)}
 			    </ul>
 			</div>
