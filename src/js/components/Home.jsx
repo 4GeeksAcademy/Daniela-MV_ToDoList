@@ -27,9 +27,11 @@ const Home = () => {
 		setTareas(nuevasTareas);
 	}
 
-	return (
+	function tareasActivas (){
+		return tareas.length;
+	}
 
-	
+	return (
 	 <div className="d-flex justify-content-center" id="fondo" style={{backgroundColor: "#f0f0f0", minHeight: "100vh"}} >
 	 	<div className="form text-center fs-1 mt-5" style={{width: "900px"}}>
 	 	<label type="text">Todos</label>
@@ -50,7 +52,7 @@ const Home = () => {
 				<button type="button" class="btn btn-light" onClick={()=>borrarTarea(index)}>
 				<i className="bi bi-clipboard-x"></i> 
 				</button> )}
-				
+				<span>{tareasActivas()} tareas</span>
 				</li>)}
 			    </ul>
 			</div>
