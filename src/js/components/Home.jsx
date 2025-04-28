@@ -32,28 +32,28 @@ const Home = () => {
 	}
 
 	return (
-	 <div className="d-flex justify-content-center" id="fondo" style={{backgroundColor: "#f0f0f0", minHeight: "100vh"}} >
-	 	<div className="form text-center fs-1 mt-5" style={{width: "900px"}}>
-	 	<label type="text">Todos</label>
+	 <div className="fondo d-flex justify-content-center">
+	 	<div className="form text-center font-monospace fs-1 mt-5" style={{width: "700px"}}>
+	 	<label htmlFor="tareaInput" className="estilo" >Tareas</label>
 	 		<input 
-	 		type="text" 
+	 		type="tareaInput" 
 	 		className="form-control" 
 	 		value={nuevaTarea}  
 	 		placeholder="Añade una tarea" 
 	 		onChange={entrada} 	
 	 		onKeyDown={inputEnter}/>	
 
-                <ul className="bg-light-subtle" style={{width: "900px"}}>
+                <ul className="bg-light-subtle" style={{width: "700px"}}>
 				{tareas.map((tarea, index)=> 
 				<li className="d-flex justify-content-between align-items-center px-3 py-2 border-bottom rounded-3" id="homework" key={index} onMouseEnter={()=>setBorrarBoton(index)} onMouseLeave={() =>setBorrarBoton(null)}> 
 				<span className="text">
-				<i className="bi bi-check-circle me-2 fs-4"></i>{tarea}</span>
+				<i className="bi bi-check-circle me-2 fs-4 text-success"></i>{tarea}</span>
 				{borrarBoton === index && (
 				<button type="button" class="btn btn-light" onClick={()=>borrarTarea(index)}>
 				<i className="bi bi-clipboard-x"></i> 
 				</button> )}
-				<span>{tareasActivas()} tareas</span>
 				</li>)}
+				<span className="d-flex justify-content-start fs-5 text-secondary">{tareasActivas()} tareas</span>
 			    </ul>
 			</div>
 		</div>
